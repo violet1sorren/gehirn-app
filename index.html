@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Gehirn-Anzeige</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      margin-top: 50px;
+    }
+    img {
+      width: 300px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wie geht's deinem Gehirn?</h1>
+  <img id="brain" src="brain_fresh.png" alt="Gehirn-Bild">
+  <p id="statusText"></p>
+
+  <script>
+    function getMinutesFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return parseInt(params.get("minutes")) || 0;
+    }
+
+    const minutes = getMinutesFromURL();
+    const img = document.getElementById("brain");
+    const text = document.getElementById("statusText");
+
+    if (minutes < 60) {
+      img.src = "brain_fresh.png";
+      text.textContent = "Topfit!";
+    } else if (minutes < 180) {
+      img.src = "brain_tired.png";
+      text.textContent = "Etwas müde...";
+    } else {
+      img.src = "brain_rotten.png";
+      text.textContent = "Hirn matschig!";
+    }
+  </script>
+</body>
+</html>
